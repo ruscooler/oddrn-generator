@@ -25,13 +25,13 @@ jobs:
             --build-arg PYPI_USERNAME=${{ secrets.PYPI_USERNAME }} \
             --build-arg PYPI_PASSWORD=${{ secrets.PYPI_PASSWORD }}
 
-      - name: Update repository with up-to-date submodules and version
+      - name: Update repository with up-to-date and version
         run: |
           git config --global user.email "ruslan.ibragimov.252@gmail.com"
           git config --global user.name "ruscooler"
           if [ -n "$(git status --porcelain)" ]
           then
             git add .
-            git commit -m "Update submodule branch ref and bump package version"
+            git commit -m "Bump package version"
             git push origin main
           fi
