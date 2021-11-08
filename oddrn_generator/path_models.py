@@ -347,6 +347,19 @@ class Neo4jPathsModel(BasePathsModel):
         data_source_path = 'databases'
 
 
+class FeastPathsModel(BasePathsModel):
+    featureviews: Optional[str]
+    features: Optional[str]
+    subfeatures: Optional[str]
+
+    class Config:
+        dependencies_map = {
+            'featureviews': ('featureviews',),
+            'features':     ('featureviews', 'features'),
+            'subfeatures':  ('featureviews', 'features', 'subfeatures'),
+        }
+
+
 # class KubeflowPathsModel(BasePathsModel):  # todo:
 #     pipelines: Optional[str]
 #     experiments: Optional[str]
